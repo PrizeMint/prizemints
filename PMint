@@ -1,0 +1,15 @@
+/src
+  /components
+    /ui (Buttons, Inputs, Cards, Badges)
+    /layout (Navbar, Footer, Sidebar, DashboardShell)
+    /sections (Hero, Stats, HowItWorks, ActiveGiveaways)
+    /charts (Analytics for Admin)
+  /pages
+    /public (Home, Giveaways, Winners, FAQ, About, etc.)
+    /auth (Login, SignUp, ForgotPassword)
+    /dashboard (UserEntries, Profile, Notifications)
+    /admin (AdminHome, ManageGiveaways, UserControl)
+  /hooks (useAuth, useGiveaways)
+  /styles (globals.css)
+  App.js
+  tailwind.config.js
