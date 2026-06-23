@@ -1,0 +1,24 @@
+// src/components/ui/PremiumCard.jsx
+import { motion } from 'framer-motion';
+
+export const PremiumCard = ({ children, className = "" }) => (
+  <motion.div 
+    whileHover={{ y: -5 }}
+    className={`bg-white border border-slate-100 rounded-2xl p-6 shadow-premium transition-all ${className}`}
+  >
+    {children}
+  </motion.div>
+);
+
+// src/components/ui/StatBadge.jsx
+export const StatBadge = ({ label, value, icon: Icon }) => (
+  <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+    <div className="p-2 bg-white rounded-lg shadow-sm">
+      <Icon className="w-5 h-5 text-secondary" />
+    </div>
+    <div>
+      <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">{label}</p>
+      <p className="text-xl font-bold text-primary">{value}</p>
+    </div>
+  </div>
+);

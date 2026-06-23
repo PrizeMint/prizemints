@@ -1,0 +1,107 @@
+// src/pages/dashboard/UserDashboard.jsx
+import { LayoutDashboard, Ticket, Bell, User, LogOut, CheckCircle } from 'lucide-react';
+
+const Dashboard = () => {
+  return (
+    <div className="flex min-h-screen bg-slate-50">
+      {/* Sidebar */}
+      <aside className="w-64 bg-primary text-white p-6 hidden lg:block">
+        <div className="mb-12">
+          <h2 className="text-2xl font-black tracking-tighter">PrizeMint</h2>
+        </div>
+        <nav className="space-y-2">
+          <SidebarItem icon={LayoutDashboard} label="Overview" active />
+          <SidebarItem icon={Ticket} label="My Entries" />
+          <SidebarItem icon={Bell} label="Notifications" badge="3" />
+          <SidebarItem icon={User} label="Profile Settings" />
+        </nav>
+        <div className="mt-auto pt-40">
+          <button className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+            <LogOut className="w-5 h-5" /> Logout
+          </button>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-8 overflow-y-auto">
+        <header className="flex justify-between items-center mb-10">
+          <div>
+            <h1 className="text-2xl font-bold text-primary">Welcome back, Alexander</h1>
+            <p className="text-slate-500">Account Status: <span className="text-accent font-bold">Verified</span></p>
+          </div>
+          <div className="flex gap-4">
+             <div className="w-12 h-12 bg-white rounded-full border border-slate-200 flex items-center justify-center">
+                <Bell className="w-5 h-5 text-slate-600" />
+             </div>
+             <img src="https://ui-avatars.com/api/?name=Alex+Doe&background=2563EB&color=fff" className="w-12 h-12 rounded-full" alt="profile"/>
+          </div>
+        </header>
+
+        {/* Dash Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <PremiumCard className="!p-4 bg-white">
+            <p className="text-slate-500 text-sm font-medium">Active Entries</p>
+            <p className="text-3xl font-bold mt-1">12</p>
+          </PremiumCard>
+          <PremiumCard className="!p-4 bg-white">
+            <p className="text-slate-500 text-sm font-medium">Total Won</p>
+            <p className="text-3xl font-bold mt-1">$0.00</p>
+          </PremiumCard>
+          <PremiumCard className="!p-4 bg-secondary text-white border-none">
+            <p className="text-white/80 text-sm font-medium">Eligibility Score</p>
+            <p className="text-3xl font-bold mt-1">98%</p>
+          </PremiumCard>
+        </div>
+
+        {/* Active Entries Table */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-slate-50 flex justify-between items-center">
+            <h3 className="font-bold text-lg">My Active Participations</h3>
+            <button className="text-sm text-secondary font-bold">View History</button>
+          </div>
+          <table className="w-full text-left">
+            <thead className="bg-slate-50 text-slate-400 text-xs uppercase font-bold">
+              <tr>
+                <th className="px-6 py-4">Campaign</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4">Date Entered</th>
+                <th className="px-6 py-4 text-right">Drawing Date</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50">
+              {[1, 2, 3].map((item) => (
+                <tr key={item} className="hover:bg-slate-50/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg" />
+                      <span className="font-semibold text-primary">$5,000 Cash Raffle</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="flex items-center gap-1.5 text-accent font-bold text-sm">
+                      <CheckCircle className="w-4 h-4" /> Qualified
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-slate-500 text-sm">Oct 24, 2024</td>
+                  <td className="px-6 py-4 text-right text-sm font-medium text-primary">Dec 01, 2024</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+const SidebarItem = ({ icon: Icon, label, active, badge }) => (
+  <div className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${active ? 'bg-secondary text-white' : 'text-slate-400 hover:bg-slate-800'}`}>
+    <div className="flex items-center gap-3">
+      <Icon className="w-5 h-5" />
+      <span className="font-medium">{label}</span>
+    </div>
+    {badge && <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">{badge}</span>}
+  </div>
+);
+
+export default Dashboard;
